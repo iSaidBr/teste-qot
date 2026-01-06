@@ -1,3 +1,6 @@
+if getgenv().LoaderExecuted then return end
+getgenv().LoaderExecuted = true
+
 -- Espera jogo carregar por completo
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game:GetService("Players").LocalPlayer
@@ -6,26 +9,36 @@ repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui
 
 -- Heartbeat
 local running = true
-local firstBeat = false
 task.spawn(function()
     while task.wait(4) and running do
-        local player = game:GetService("Players").LocalPlayer
-        local data = string.format(
-            '{"playerName":"%s","time":"%s"}',
-            player.Name,
-            os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
-        )
         pcall(function()
-            writefile("checkyum.json", data)
+            local code = game:GetService("GuiService"):GetErrorCode().Value
+            if code == 1 or code == 769 or code == 773 or code == 2 
+               or (code >= Enum.ConnectionError.DisconnectErrors.Value 
+                   and code < Enum.ConnectionError.PlacelaunchOtherError.Value) then
+                running = false
+                return
+            end
         end)
-        firstBeat = true
+
+        if running then
+            local player = game:GetService("Players").LocalPlayer
+            local data = string.format(
+                '{"playerName":"%s","time":"%s"}',
+                player.Name,
+                os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
+            )
+            pcall(function()
+                writefile("checkyum.json", data)
+            end)
+        end
     end
 end)
 
--- Só continua quando já gravou pelo menos um heartbeat
-repeat task.wait() until firstBeat
-
 print("✅ Heartbeat iniciado")
+
+-- Delay controlado para garantir que o heartbeat gravou pelo menos uma vez
+task.wait(6) -- ajusta o tempo conforme necessário
 
 -- Hop
 print("📦 Hop reenfileirado")
