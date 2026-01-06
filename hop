@@ -1,21 +1,11 @@
--- Chave do script (se necessário pelo executor)
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+getgenv().HopCount = (getgenv().HopCount or 0) + 1
+print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
 
--- URL do farming script
-local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
+-- Reenfileira logo no início
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
--- Executa imediatamente o farming script
-loadstring(game:HttpGet(farmUrl))()
-
--- Reenfileira o próprio hop para looping infinito
-queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-
--- Heartbeat: atualiza arquivo a cada 10 segundos
-task.spawn(function()
-    while true do
-        pcall(function()
-            writefile("manager_heartbeat.txt", tostring(os.time()))
-        end)
-        task.wait(10)
-    end
-end)
+-- Espera e força hop
+task.wait(5)
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
