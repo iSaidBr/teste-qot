@@ -3,7 +3,7 @@ repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPla
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local plr = Players.LocalPlayer
-local button = plr.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.CriminalTeam
+local button = plr.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.NonPoliceTeam
 if plr.ChoosingTeam.Value and button then
     local running = true
 task.spawn(function()
