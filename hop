@@ -1,13 +1,9 @@
--- Contador global de execuções
 getgenv().ExecCount = (getgenv().ExecCount or 0) + 1
 print("Script rodando! Execução número: " .. tostring(getgenv().ExecCount))
 
--- URL do script de farming
 local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
 
--- Executa imediatamente
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet(farmUrl))()
 
--- Enfileira para reaplicar no próximo serverhop
 queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("' .. farmUrl .. '"))()')
