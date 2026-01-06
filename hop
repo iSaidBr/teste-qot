@@ -30,15 +30,12 @@ end)
 
 print("✅ Heartbeat iniciado")
 
+print("📦 Hop reenfileirado")
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+
 -- Farming
 print("🚀 Executando AutoRob...")
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
 print("✅ AutoRob executado")
 
--- Espera jogo carregar
-repeat task.wait() until game:IsLoaded()
-
--- Reenfileira para próximo hop
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-print("📦 Hop reenfileirado")
