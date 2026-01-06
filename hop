@@ -1,10 +1,35 @@
 -- Heartbeat
+repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
+
+local running = true
 task.spawn(function()
-    while true do
+    while task.wait(4) and running do
         pcall(function()
-            writefile("manager_heartbeat.txt", tostring(os.time()))
+            local code = game:GetService("GuiService"):GetErrorCode().Value
+            if code == 1 or code == 769 or code == 773 or code == 2 
+               or (code >= Enum.ConnectionError.DisconnectErrors.Value 
+                   and code < Enum.ConnectionError.PlacelaunchOtherError.Value) then
+                running = false
+                return
+            end
         end)
-        task.wait(10)
+
+        if running then
+            local okPlace, placeId = pcall(function() return game.PlaceId end)
+            local okHum, hum = pcall(function() return game:GetService("Players").LocalPlayer.Character.Humanoid end)
+
+            if not (okPlace and placeId == 0 and not (okHum and hum)) then
+                pcall(function()
+                    local player = game:GetService("Players").LocalPlayer
+                    local data = string.format(
+                        '{"playerName":"%s","time":"%s"}',
+                        player.Name,
+                        os.date("!%Y-%m-%dT%H:%M:%SZ", workspace:GetServerTimeNow())
+                    )
+                    writefile(player.Name .. "_checkyum.json", data)
+                end)
+            end
+        end
     end
 end)
 print("✅ Heartbeat iniciado")
