@@ -7,6 +7,18 @@ repeat task.wait() until game:GetService("Players").LocalPlayer
 repeat task.wait() until game:GetService("Players").LocalPlayer.Character
 repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui
 
+print("✅ Heartbeat iniciado")
+
+-- Hop
+print("📦 Hop reenfileirado")
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+
+-- Farming
+print("🚀 Executando AutoRob...")
+script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
+print("✅ AutoRob executado")
+
 -- Heartbeat
 local running = true
 task.spawn(function()
@@ -34,15 +46,3 @@ task.spawn(function()
         end
     end
 end)
-
-print("✅ Heartbeat iniciado")
-
--- Hop
-print("📦 Hop reenfileirado")
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-
--- Farming
-print("🚀 Executando AutoRob...")
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
-print("✅ AutoRob executado")
