@@ -1,3 +1,6 @@
+repeat task.wait() until game:IsLoaded()
+print("🎮 Jogo carregado, preparando reenfileiramento...")
+
 -- Heartbeat
 task.spawn(function()
     while true do
@@ -14,10 +17,6 @@ print("🚀 Executando AutoRob agora...")
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
 print("✅ AutoRob executado")
-
--- Espera jogo carregar
-repeat task.wait() until game:IsLoaded()
-print("🎮 Jogo carregado, preparando reenfileiramento...")
 
 -- Reenfileira hop
 print("📦 Enfileirando hop.lua para próximo serverhop")
