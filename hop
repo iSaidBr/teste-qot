@@ -1,13 +1,14 @@
 if getgenv().LoaderExecuted then return end
 getgenv().LoaderExecuted = true
+
+-- Espera jogo carregar por completo
+repeat task.wait() until game:IsLoaded()
+repeat task.wait() until game:GetService("Players").LocalPlayer
+repeat task.wait() until game:GetService("Players").LocalPlayer.Character
+repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui
+
 -- Heartbeat
-repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local plr = Players.LocalPlayer
-local button = plr.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.NonPoliceTeam
-if plr.ChoosingTeam.Value and button then
-    local running = true
+local running = true
 task.spawn(function()
     while task.wait(4) and running do
         pcall(function()
@@ -25,7 +26,7 @@ task.spawn(function()
             local data = string.format(
                 '{"playerName":"%s","time":"%s"}',
                 player.Name,
-                os.date("!%Y-%m-%dT%H:%M:%SZ", workspace:GetServerTimeNow())
+                os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
             )
             pcall(function()
                 writefile("checkyum.json", data)
@@ -35,6 +36,8 @@ task.spawn(function()
 end)
 
 print("✅ Heartbeat iniciado")
+
+-- Hop
 print("📦 Hop reenfileirado")
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
@@ -43,4 +46,3 @@ print("🚀 Executando AutoRob...")
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
 print("✅ AutoRob executado")
-end
