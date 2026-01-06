@@ -7,7 +7,7 @@ local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/ref
 
 loadstring(game:HttpGet(farmUrl))()
 
-queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("' .. farmUrl .. '"))()')
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
 task.spawn(function()
     while true do
