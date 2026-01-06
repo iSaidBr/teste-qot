@@ -22,12 +22,19 @@ end)
 -- Espera jogo carregar
 repeat task.wait() until game:IsLoaded()
 
--- ✅ Só enfileira uma vez
+-- ✅ Só enfileira se ainda não foi enfileirado
 if not getgenv().HopQueued then
     getgenv().HopQueued = true
-    queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+    queue_on_teleport([[
+        if not getgenv().HopRunning then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()
+        end
+    ]])
 end
 
--- Executa farming
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
+-- Executa farming apenas na primeira vez
+if not getgenv().FarmExecuted then
+    getgenv().FarmExecuted = true
+    script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
+end
