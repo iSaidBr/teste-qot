@@ -30,6 +30,9 @@ end)
 
 print("✅ Heartbeat iniciado")
 
+
+if getgenv().LoaderExecuted then return end
+getgenv().LoaderExecuted = true
 print("📦 Hop reenfileirado")
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
