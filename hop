@@ -1,14 +1,3 @@
--- Guard contra duplicação
-if getgenv().HopRunning then
-    warn("Hop já estava rodando, ignorado.")
-    return
-end
-getgenv().HopRunning = true
-
--- Contador
-getgenv().HopCount = (getgenv().HopCount or 0) + 1
-print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
-
 -- Heartbeat
 task.spawn(function()
     while true do
@@ -18,23 +7,19 @@ task.spawn(function()
         task.wait(10)
     end
 end)
+print("✅ Heartbeat iniciado")
+
+-- Executa farming primeiro
+print("🚀 Executando AutoRob agora...")
+script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
+print("✅ AutoRob executado")
 
 -- Espera jogo carregar
 repeat task.wait() until game:IsLoaded()
+print("🎮 Jogo carregado, preparando reenfileiramento...")
 
--- ✅ Só enfileira se ainda não foi enfileirado
-if not getgenv().HopQueued then
-    getgenv().HopQueued = true
-    queue_on_teleport([[
-        if not getgenv().HopRunning then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()
-        end
-    ]])
-end
-
--- Executa farming apenas na primeira vez
-if not getgenv().FarmExecuted then
-    getgenv().FarmExecuted = true
-    script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
-end
+-- Reenfileira hop
+print("📦 Enfileirando hop.lua para próximo serverhop")
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+print("✅ Hop.lua enfileirado")
