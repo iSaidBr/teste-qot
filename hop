@@ -15,23 +15,19 @@ task.spawn(function()
         end)
 
         if running then
-            local okPlace, placeId = pcall(function() return game.PlaceId end)
-            local okHum, hum = pcall(function() return game:GetService("Players").LocalPlayer.Character.Humanoid end)
-
-            if not (okPlace and placeId == 0 and not (okHum and hum)) then
-                pcall(function()
-                    local player = game:GetService("Players").LocalPlayer
-                    local data = string.format(
-                        '{"playerName":"%s","time":"%s"}',
-                        player.Name,
-                        os.date("!%Y-%m-%dT%H:%M:%SZ", workspace:GetServerTimeNow())
-                    )
-                    writefile(player.Name .. "_checkyum.json", data)
-                end)
-            end
+            local player = game:GetService("Players").LocalPlayer
+            local data = string.format(
+                '{"playerName":"%s","time":"%s"}',
+                player.Name,
+                os.date("!%Y-%m-%dT%H:%M:%SZ", workspace:GetServerTimeNow())
+            )
+            pcall(function()
+                writefile("checkyum.json", data)
+            end)
         end
     end
 end)
+
 print("✅ Heartbeat iniciado")
 
 -- Farming
