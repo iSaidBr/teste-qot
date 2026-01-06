@@ -9,7 +9,7 @@ print("✅ Manager iniciado")
 
 -- ================== REQUEUE NO TELEPORT ==================
 queue_on_teleport([[
-    loadstring(readfile("manager.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/manager.lua"))()
 ]])
 
 -- ================== HEARTBEAT ==================
