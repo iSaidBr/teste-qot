@@ -1,11 +1,3 @@
-if getgenv().ManagerExecuted then return end getgenv().ManagerExecuted = true
-
--- Espera jogo carregar por completo
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until game:GetService("Players").LocalPlayer
-repeat task.wait() until game:GetService("Players").LocalPlayer.Character
-repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui
-
 -- Heartbeat
 local running = true
 task.spawn(function()
@@ -36,12 +28,19 @@ end)
 
 print("✅ Heartbeat iniciado")
 
--- Hop
-print("📦 Hop reenfileirado")
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-
 -- Farming
 print("🚀 Executando AutoRob...")
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
 print("✅ AutoRob executado")
+
+queue_on_teleport([[local success, err = pcall(function()
+    -- substitua pela URL do seu script completo (heartbeat + farm)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()
+end)
+
+if success then
+    print("✅ Script principal carregado com sucesso")
+else
+    warn("❌ Erro ao carregar script principal:", err)
+end]])
