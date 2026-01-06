@@ -24,9 +24,9 @@ task.spawn(function()
         if running then
             local player = game:GetService("Players").LocalPlayer
             local data = string.format(
-                '{"playerName":"%s","time":"%s"}',
+                '{"playerName":"%s","time":%d}',
                 player.Name,
-                os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
+                os.time() -- grava Unix time (segundos desde 1970)
             )
             pcall(function()
                 writefile("checkyum.json", data)
@@ -38,7 +38,7 @@ end)
 print("✅ Heartbeat iniciado")
 
 -- Delay controlado para garantir que o heartbeat gravou pelo menos uma vez
-task.wait(6) -- ajusta o tempo conforme necessário
+task.wait(6)
 
 -- Hop
 print("📦 Hop reenfileirado")
