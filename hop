@@ -1,3 +1,5 @@
+if getgenv().LoaderExecuted then return end
+getgenv().LoaderExecuted = true
 -- Heartbeat
 repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
 local Players = game:GetService("Players")
@@ -33,10 +35,6 @@ task.spawn(function()
 end)
 
 print("✅ Heartbeat iniciado")
-
-
-if getgenv().LoaderExecuted then return end
-getgenv().LoaderExecuted = true
 print("📦 Hop reenfileirado")
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
