@@ -1,6 +1,8 @@
 -- Heartbeat
 repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
-local plr = game:GetService("Players").LocalPlayer
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local plr = Players.LocalPlayer
 local button = plr.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.CriminalTeam
 if plr.ChoosingTeam.Value and button then
     local running = true
