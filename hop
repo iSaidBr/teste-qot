@@ -1,9 +1,19 @@
-getgenv().ExecCount = (getgenv().ExecCount or 0) + 1
-print("Script rodando! Execução número: " .. tostring(getgenv().ExecCount))
+if getgenv().LoaderExecuted then return end
+getgenv().LoaderExecuted = true
+
+script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 
 local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
 
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet(farmUrl))()
 
 queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("' .. farmUrl .. '"))()')
+
+task.spawn(function()
+    while true do
+        pcall(function()
+            writefile("manager_heartbeat.txt", tostring(os.time()))
+        end)
+        task.wait(10)
+    end
+end)
