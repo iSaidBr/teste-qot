@@ -1,7 +1,8 @@
 -- Heartbeat
 repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
-local button = game:GetService("Players").LocalPlayer.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.CriminalTeam
-if game:GetService("Players").LocalPlayer.ChoosingTeam.Value and button then
+local plr = game:GetService("Players").LocalPlayer
+local button = plr.PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.CriminalTeam
+if plr.ChoosingTeam.Value and button then
     local running = true
 task.spawn(function()
     while task.wait(4) and running do
