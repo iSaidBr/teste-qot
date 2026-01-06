@@ -1,7 +1,8 @@
 -- Heartbeat
 repeat task.wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer
-
-local running = true
+local button = game:GetService("Players").PlayerGui.TeamSelectGui.TeamSelect.Frame.MiddleContainer.TeamsContainer.ImagesContainer.CriminalTeam
+if game:GetService("Players").LocalPlayer.ChoosingTeam.Value and button then
+    local running = true
 task.spawn(function()
     while task.wait(4) and running do
         pcall(function()
@@ -41,4 +42,4 @@ print("🚀 Executando AutoRob...")
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
 print("✅ AutoRob executado")
-
+end
