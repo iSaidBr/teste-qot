@@ -1,9 +1,13 @@
-getgenv().HopCount = (getgenv().HopCount or 0) + 1
-print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
+-- Contador global de execuções
+getgenv().ExecCount = (getgenv().ExecCount or 0) + 1
+print("Script rodando! Execução número: " .. tostring(getgenv().ExecCount))
 
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+-- URL do script de farming
+local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
 
-task.wait(5)
-local TeleportService = game:GetService("TeleportService")
-local Players = game:GetService("Players")
-TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
+-- Executa imediatamente
+script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+loadstring(game:HttpGet(farmUrl))()
+
+-- Enfileira para reaplicar no próximo serverhop
+queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("' .. farmUrl .. '"))()')
