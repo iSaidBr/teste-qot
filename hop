@@ -36,9 +36,6 @@ end)
 
 print("✅ Heartbeat iniciado")
 
--- Delay controlado para garantir que o heartbeat gravou pelo menos uma vez
-task.wait(6)
-
 -- Hop
 print("📦 Hop reenfileirado")
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
