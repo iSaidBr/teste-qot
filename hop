@@ -1,0 +1,23 @@
+if getgenv().Executed then return end
+getgenv().Executed = true
+getgenv().HopCount = (getgenv().HopCount or 0) + 1
+
+print("Script rodando pela primeira vez! Hop número: " .. tostring(getgenv().HopCount))
+
+-- Enfileira para reaplicar no próximo hop
+queue_on_teleport([[
+    getgenv().HopCount = (getgenv().HopCount or 0) + 1
+    print("Reexecutado após serverhop! Hop número: " .. tostring(getgenv().HopCount))
+    task.wait(5)
+    local TeleportService = game:GetService("TeleportService")
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    TeleportService:Teleport(game.PlaceId, player)
+]])
+
+-- Faz o primeiro hop depois de 5 segundos
+task.wait(5)
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+TeleportService:Teleport(game.PlaceId, player)
