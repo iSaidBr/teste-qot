@@ -1,23 +1,9 @@
--- Contador global de hops
 getgenv().HopCount = (getgenv().HopCount or 0) + 1
 print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
 
--- Enfileira para o próximo hop com string simples
-local nextHop = 
-    'getgenv().HopCount = (getgenv().HopCount or 0) + 1\n' ..
-    'print("Reexecutado após serverhop! Hop número: " .. tostring(getgenv().HopCount))\n' ..
-    'queue_on_teleport("loadstring(game:HttpGet(\\"https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop\\"))()")\n' ..
-    'task.wait(5)\n' ..
-    'local TeleportService = game:GetService("TeleportService")\n' ..
-    'local Players = game:GetService("Players")\n' ..
-    'local player = Players.LocalPlayer\n' ..
-    'TeleportService:Teleport(game.PlaceId, player)\n'
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
-queue_on_teleport(nextHop)
-
--- Também força hop na primeira execução
 task.wait(5)
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-TeleportService:Teleport(game.PlaceId, player)
+TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
