@@ -1,3 +1,6 @@
+if getgenv().HopExecuted then return end
+getgenv().HopExecuted = true
+
 getgenv().HopCount = (getgenv().HopCount or 0) + 1
 print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
 
@@ -10,10 +13,11 @@ task.spawn(function()
     end
 end)
 
--- Reenfileira logo no início
+repeat wait() until game:IsLoaded()
+
+-- Reenfileira após o jogo carregar
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
--- Espera e força hop
-repeat wait() until game:IsLoaded()
+-- Executa farming
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
