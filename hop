@@ -1,4 +1,4 @@
--- Guard global: só deixa rodar uma vez
+-- Guard contra duplicação
 if getgenv().HopRunning then
     warn("Hop já estava rodando, ignorado.")
     return
@@ -22,8 +22,11 @@ end)
 -- Espera jogo carregar
 repeat task.wait() until game:IsLoaded()
 
--- Reenfileira para próximo hop
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+-- ✅ Só enfileira uma vez
+if not getgenv().HopQueued then
+    getgenv().HopQueued = true
+    queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+end
 
 -- Executa farming
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
