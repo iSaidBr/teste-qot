@@ -1,9 +1,15 @@
-if getgenv().HopExecuted then return end
-getgenv().HopExecuted = true
+-- Guard global: só deixa rodar uma vez
+if getgenv().HopRunning then
+    warn("Hop já estava rodando, ignorado.")
+    return
+end
+getgenv().HopRunning = true
 
+-- Contador
 getgenv().HopCount = (getgenv().HopCount or 0) + 1
 print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
 
+-- Heartbeat
 task.spawn(function()
     while true do
         pcall(function()
@@ -13,9 +19,10 @@ task.spawn(function()
     end
 end)
 
-repeat wait() until game:IsLoaded()
+-- Espera jogo carregar
+repeat task.wait() until game:IsLoaded()
 
--- Reenfileira após o jogo carregar
+-- Reenfileira para próximo hop
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
 -- Executa farming
