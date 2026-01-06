@@ -1,13 +1,13 @@
 if getgenv().LoaderExecuted then return end
 getgenv().LoaderExecuted = true
 
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 
 local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
 
 loadstring(game:HttpGet(farmUrl))()
-
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
 
 task.spawn(function()
     while true do
