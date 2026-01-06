@@ -1,14 +1,16 @@
-if getgenv().LoaderExecuted then return end
-getgenv().LoaderExecuted = true
-
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-
+-- Chave do script (se necessário pelo executor)
 script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
 
+-- URL do farming script
 local farmUrl = "https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"
 
+-- Executa imediatamente o farming script
 loadstring(game:HttpGet(farmUrl))()
 
+-- Reenfileira o próprio hop para looping infinito
+queue_on_teleport('script_key="lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"; loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+
+-- Heartbeat: atualiza arquivo a cada 10 segundos
 task.spawn(function()
     while true do
         pcall(function()
