@@ -1,14 +1,6 @@
 getgenv().HopCount = (getgenv().HopCount or 0) + 1
 print("Script rodando! Hop número: " .. tostring(getgenv().HopCount))
 
--- Reenfileira logo no início
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
-
--- Espera e força hop
-repeat wait() until game:IsLoaded()
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
-
 task.spawn(function()
     while true do
         pcall(function()
@@ -17,3 +9,11 @@ task.spawn(function()
         task.wait(10)
     end
 end)
+
+-- Reenfileira logo no início
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()')
+
+-- Espera e força hop
+repeat wait() until game:IsLoaded()
+script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
