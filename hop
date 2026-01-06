@@ -1,6 +1,3 @@
-if getgenv().LoaderExecuted then return end
-getgenv().LoaderExecuted = true
-
 -- Espera jogo carregar por completo
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game:GetService("Players").LocalPlayer
