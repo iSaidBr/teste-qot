@@ -1,4 +1,6 @@
 -- Heartbeat
+if getgenv().HeartbeatRunning then return end
+getgenv().HeartbeatRunning = true
 local running = true
 task.spawn(function()
     while task.wait(4) and running do
@@ -29,18 +31,10 @@ end)
 print("✅ Heartbeat iniciado")
 
 -- Farming
-print("🚀 Executando AutoRob...")
-script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
-print("✅ AutoRob executado")
-
-queue_on_teleport([[local success, err = pcall(function()
-    -- substitua pela URL do seu script completo (heartbeat + farm)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/iSaidBr/teste-qot/refs/heads/main/hop"))()
-end)
-
-if success then
-    print("✅ Script principal carregado com sucesso")
-else
-    warn("❌ Erro ao carregar script principal:", err)
-end]])
+if not getgenv().AutoRobRunning then
+    getgenv().AutoRobRunning = true
+    print("🚀 Executando AutoRob...")
+    script_key = "lqEDtgthalNLvLXEbzHnWZctJAQrwWNA"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BlitzIsKing/UniversalFarm/refs/heads/main/Jailbreak/autoRob"))()
+    print("✅ AutoRob executado")
+end
